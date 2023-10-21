@@ -1,17 +1,25 @@
 import SwiftUI
 import shared
+import KMMViewModelSwiftUI
 
 struct ContentView: View {
+    @StateViewModel var viewModel = MainViewModel()
+    
     let items = CheeseViewStateFakeData().cheeseViewStates
     
     var body: some View {
-        List(items,
-             id: \.cheeseName) {
-            let item: CheeseViewState = $0
-            HStack(content: {
-                Text(item.cheeseName)
-            })
-        }
+        ZStack(content: {
+            List(viewModel.state.items,
+                 id: \.cheeseName) {
+                let item: CheeseViewState = $0
+                HStack(content: {
+                    Text(item.cheeseName)
+                })
+            }
+            if(viewModel.state.loading) {
+                ProgressView()
+            }
+        })
     }
 }
 

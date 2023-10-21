@@ -2,15 +2,21 @@ import SwiftUI
 import shared
 
 struct ContentView: View {
-	let greet = Greeting().greet()
-
-	var body: some View {
-		Text(greet)
-	}
+    let items = CheeseViewStateFakeData().cheeseViewStates
+    
+    var body: some View {
+        List(items,
+             id: \.cheeseName) {
+            let item: CheeseViewState = $0
+            HStack(content: {
+                Text(item.cheeseName)
+            })
+        }
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
-	static var previews: some View {
-		ContentView()
-	}
+    static var previews: some View {
+        ContentView()
+    }
 }

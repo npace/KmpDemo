@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.googleKsp)
     alias(libs.plugins.kmpNativeCoroutines)
+    alias(libs.plugins.composeMultiplatform)
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -34,6 +35,9 @@ kotlin {
                 implementation(libs.ktor.client.core)
                 implementation(libs.ktor.client.content.negotiation)
                 implementation(libs.ktor.serialization.kotlinx.json)
+                implementation(compose.runtime)
+                implementation(compose.foundation)
+                implementation(compose.material3)
 
                 implementation(projects.api)
             }

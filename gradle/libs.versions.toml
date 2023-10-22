@@ -30,6 +30,8 @@ ktor-server-core-jvm = { module = "io.ktor:ktor-server-core-jvm" }
 ktor-server-netty-jvm = { module = "io.ktor:ktor-server-netty-jvm" }
 ktor-server-status-pages-jvm = { module = "io.ktor:ktor-server-status-pages-jvm" }
 ktor-server-default-headers-jvm = { module = "io.ktor:ktor-server-default-headers-jvm" }
+ktor-server-content-negotiation = { module = "io.ktor:ktor-server-content-negotiation" }
+ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json" }
 logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 
 [plugins]

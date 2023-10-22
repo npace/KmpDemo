@@ -19,4 +19,6 @@ dependencies {
     implementation(libs.ktor.server.status.pages.jvm)
     implementation(libs.ktor.server.default.headers.jvm)
     implementation(libs.logback)
+
+    implementation(projects.api)
 }

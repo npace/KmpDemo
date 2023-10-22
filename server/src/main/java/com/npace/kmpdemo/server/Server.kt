@@ -16,7 +16,7 @@ fun main() {
 private fun Application.module() {
     routing {
         get("/") {
-            call.respond("Server running")
+            call.respond(CheesesData.cheeses.toString())
         }
     }
 }

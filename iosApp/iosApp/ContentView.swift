@@ -2,22 +2,20 @@ import SwiftUI
 import shared
 import KMMViewModelSwiftUI
 
-struct ContentView: View {
-    @StateViewModel var viewModel = MainViewModel()
+struct ComposeView: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> some UIViewController {
+        let viewModel = MainViewModel()
+        return Main_iosKt.MainViewController(viewModel: viewModel)
+    }
     
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+    }
+}
+
+struct ContentView: View {
     var body: some View {
-        ZStack(content: {
-            List(viewModel.state.items,
-                 id: \.cheeseName) {
-                let item: CheeseViewState = $0
-                HStack(content: {
-                    Text(item.cheeseName)
-                })
-            }
-            if(viewModel.state.loading) {
-                ProgressView()
-            }
-        })
+        ComposeView()
+            .ignoresSafeArea(.all, edges: .bottom)
     }
 }
 

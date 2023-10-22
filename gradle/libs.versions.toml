@@ -9,6 +9,7 @@ kmm-viewmodel = "1.0.0-ALPHA-14"
 google-ksp = "1.9.10-1.0.13"
 kmp-native-coroutines = "1.0.0-ALPHA-18"
 kotlinx-coroutines = "1.7.3" # compatible with kmm-viewmodel version
+kotlinx-serialization = "1.6.0"
 turbine = "1.0.0"
 ktor = "2.3.5"
 logback = "1.2.11"
@@ -37,6 +38,7 @@ kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinx-serialization" }
 googleKsp = { id = "com.google.devtools.ksp", version.ref = "google-ksp" }
 kmpNativeCoroutines = { id = "com.rickclephas.kmp.nativecoroutines", version.ref = "kmp-native-coroutines" }
 ktor = { id = "io.ktor.plugin", version.ref = "ktor" }

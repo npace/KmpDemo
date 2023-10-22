@@ -46,6 +46,12 @@ kotlin {
             }
         }
 
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.ktor.client.okhttp)
+            }
+        }
+
         all {
             languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
         }

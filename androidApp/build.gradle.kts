@@ -25,8 +25,12 @@ android {
         }
     }
     buildTypes {
-        getByName("release") {
+        release {
             isMinifyEnabled = false
+            manifestPlaceholders["securityConfig"] = "@xml/network_security_config_prod"
+        }
+        debug {
+            manifestPlaceholders["securityConfig"] = "@xml/network_security_config_dev"
         }
     }
     compileOptions {

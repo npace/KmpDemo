@@ -31,6 +31,9 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api(libs.kmm.viewmodel)
+                implementation(libs.ktor.client.core)
+                implementation(libs.ktor.client.content.negotiation)
+                implementation(libs.ktor.serialization.kotlinx.json)
             }
         }
         val commonTest by getting {

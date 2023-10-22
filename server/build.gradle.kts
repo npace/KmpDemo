@@ -18,5 +18,9 @@ dependencies {
     implementation(libs.ktor.server.netty.jvm)
     implementation(libs.ktor.server.status.pages.jvm)
     implementation(libs.ktor.server.default.headers.jvm)
+    implementation(libs.ktor.server.content.negotiation)
+    implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.logback)
+
+    implementation(projects.api)
 }

@@ -5,8 +5,6 @@ import KMMViewModelSwiftUI
 struct ContentView: View {
     @StateViewModel var viewModel = MainViewModel()
     
-    let items = CheeseViewStateFakeData().cheeseViewStates
-    
     var body: some View {
         ZStack(content: {
             List(viewModel.state.items,

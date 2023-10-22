@@ -3,6 +3,8 @@ package com.npace.kmpdemo
 import app.cash.turbine.TurbineTestContext
 import app.cash.turbine.test
 import com.npace.kmpdemo.MainViewModel.MainUIState
+import com.npace.kmpdemo.api.CheeseResponse
+import com.npace.kmpdemo.apiclient.ApiClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -18,6 +20,10 @@ import kotlin.test.assertEquals
 @OptIn(ExperimentalCoroutinesApi::class)
 class MainViewModelTest {
     private val dispatcher: TestDispatcher = StandardTestDispatcher()
+    private val api = object: ApiClient {
+        var response = emptyList<CheeseResponse>()
+        override suspend fun loadItems(): List<CheeseResponse> = response
+    }
 
     @BeforeTest
     fun setup() {
@@ -42,10 +48,11 @@ class MainViewModelTest {
     }
 
     @Test
-    fun `loads items after delay`() = testState {
+    fun `loads items from API and maps them to UI state`() = testState {
+        api.response = listOf(CheeseResponse("foo"))
         val expectedState = MainUIState(
             false,
-            CheeseViewStateFakeData.cheeseViewStates,
+            listOf(CheeseViewState("foo")),
         )
 
         dispatcher.scheduler.advanceUntilIdle()
@@ -56,7 +63,7 @@ class MainViewModelTest {
 
     private fun testState(validate: suspend TurbineTestContext<MainUIState>.() -> Unit) {
         return runBlocking {
-            MainViewModel().state.test(validate = validate)
+            MainViewModel(api).state.test(validate = validate)
         }
     }
 }

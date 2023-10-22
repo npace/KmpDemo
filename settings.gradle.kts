@@ -18,3 +18,4 @@ rootProject.name = "KmpDemo"
 include(":androidApp")
 include(":shared")
 include(":server")
+include(":api")

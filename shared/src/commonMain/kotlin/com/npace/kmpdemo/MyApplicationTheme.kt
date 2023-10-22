@@ -1,4 +1,4 @@
-package com.npace.kmpdemo.android
+package com.npace.kmpdemo
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape

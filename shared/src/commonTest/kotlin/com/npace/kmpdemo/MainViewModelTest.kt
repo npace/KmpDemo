@@ -24,6 +24,7 @@ class MainViewModelTest {
         var response = emptyList<CheeseResponse>()
         override suspend fun loadItems(): List<CheeseResponse> = response
     }
+    private val platform = getPlatform()
 
     @BeforeTest
     fun setup() {
@@ -49,10 +50,16 @@ class MainViewModelTest {
 
     @Test
     fun `loads items from API and maps them to UI state`() = testState {
-        api.response = listOf(CheeseResponse("foo"))
+        api.response = listOf(
+            CheeseResponse("foo", "/foo-url"),
+            CheeseResponse("bar", null),
+        )
         val expectedState = MainUIState(
             false,
-            listOf(CheeseViewState("foo")),
+            listOf(
+                CheeseViewState("foo", "${platform.localServerHost}/foo-url"),
+                CheeseViewState("bar", null),
+            ),
         )
 
         dispatcher.scheduler.advanceUntilIdle()
@@ -63,7 +70,7 @@ class MainViewModelTest {
 
     private fun testState(validate: suspend TurbineTestContext<MainUIState>.() -> Unit) {
         return runBlocking {
-            MainViewModel(api).state.test(validate = validate)
+            MainViewModel(api, platform).state.test(validate = validate)
         }
     }
 }

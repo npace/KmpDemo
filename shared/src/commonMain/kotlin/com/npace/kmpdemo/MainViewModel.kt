@@ -12,9 +12,10 @@ import kotlinx.coroutines.launch
 
 class MainViewModel(
     private val apiClient: ApiClient,
+    private val platform: Platform,
 ) : KMMViewModel() {
 
-    constructor() : this(KtorApiClient())
+    constructor() : this(KtorApiClient(), getPlatform())
 
     data class MainUIState(
         val loading: Boolean,
@@ -37,9 +38,18 @@ class MainViewModel(
             _state.update {
                 it.copy(
                     loading = false,
-                    items = response.map { response -> CheeseViewState(response.name) },
+                    items = response.map { response ->
+                        CheeseViewState(
+                            response.name,
+                            imageUrl(response.imagePath),
+                        )
+                    },
                 )
             }
         }
+    }
+
+    private fun imageUrl(path: String?): String? {
+        return if (path != null) platform.localServerHost + path else null
     }
 }

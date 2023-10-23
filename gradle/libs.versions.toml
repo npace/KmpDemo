@@ -13,6 +13,7 @@ kotlinx-serialization = "1.6.0"
 turbine = "1.0.0"
 ktor = "2.3.5"
 logback = "1.2.11"
+kamel = "0.6.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -37,6 +38,7 @@ ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negoti
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
 logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+kamel = { module = "media.kamel:kamel-image", version.ref = "kamel" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

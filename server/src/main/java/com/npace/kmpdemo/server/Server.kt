@@ -1,5 +1,6 @@
 package com.npace.kmpdemo.server
 
+import com.npace.kmpdemo.api.CheeseResponse
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.server.application.Application
 import io.ktor.server.application.call
@@ -12,6 +13,7 @@ import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.server.response.respond
 import io.ktor.server.routing.get
 import io.ktor.server.routing.routing
+import io.ktor.util.toLowerCasePreservingASCIIRules
 import kotlinx.serialization.json.Json
 
 fun main() {
@@ -27,10 +29,17 @@ private fun Application.module() {
     }
     routing {
         get("/") {
-            call.respond(CheesesData.cheeses)
+            call.respond(CheesesData.cheeses.map {
+                CheeseResponse(it, imagePath(it))
+            })
         }
         staticResources("/static", "/static") {
             preCompressed(CompressedFileType.GZIP)
         }
     }
+}
+
+private fun imagePath(cheeseName: String): String {
+    val fileName = "${cheeseName.toLowerCasePreservingASCIIRules()}.jpg"
+    return "/static/images/$fileName"
 }

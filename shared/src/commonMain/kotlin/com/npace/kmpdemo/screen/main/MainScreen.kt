@@ -1,4 +1,4 @@
-package com.npace.kmpdemo
+package com.npace.kmpdemo.screen.main
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -27,6 +27,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
+import com.npace.kmpdemo.CheeseViewState
+import com.npace.kmpdemo.MyApplicationTheme
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
 

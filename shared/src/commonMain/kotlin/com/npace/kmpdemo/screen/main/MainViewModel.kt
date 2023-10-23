@@ -1,9 +1,12 @@
-package com.npace.kmpdemo
+package com.npace.kmpdemo.screen.main
 
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.coroutineScope
+import com.npace.kmpdemo.CheeseViewState
+import com.npace.kmpdemo.Platform
 import com.npace.kmpdemo.apiclient.ApiClient
 import com.npace.kmpdemo.apiclient.KtorApiClient
+import com.npace.kmpdemo.getPlatform
 import com.rickclephas.kmp.nativecoroutines.NativeCoroutinesState
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

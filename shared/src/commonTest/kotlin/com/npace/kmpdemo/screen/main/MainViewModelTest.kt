@@ -1,10 +1,12 @@
-package com.npace.kmpdemo
+package com.npace.kmpdemo.screen.main
 
 import app.cash.turbine.TurbineTestContext
 import app.cash.turbine.test
-import com.npace.kmpdemo.MainViewModel.MainUIState
+import com.npace.kmpdemo.CheeseViewState
+import com.npace.kmpdemo.screen.main.MainViewModel.MainUIState
 import com.npace.kmpdemo.api.CheeseResponse
 import com.npace.kmpdemo.apiclient.ApiClient
+import com.npace.kmpdemo.getPlatform
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking

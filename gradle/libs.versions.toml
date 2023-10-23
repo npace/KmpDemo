@@ -49,3 +49,4 @@ kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 googleKsp = { id = "com.google.devtools.ksp", version.ref = "google-ksp" }
 kmpNativeCoroutines = { id = "com.rickclephas.kmp.nativecoroutines", version.ref = "kmp-native-coroutines" }
 ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
+composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose"}

@@ -1,11 +1,9 @@
 import SwiftUI
 import shared
-import KMMViewModelSwiftUI
 
 struct ComposeView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> some UIViewController {
-        let viewModel = MainViewModel()
-        return Main_iosKt.MainViewController(viewModel: viewModel)
+        return Main_iosKt.MainViewController()
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {

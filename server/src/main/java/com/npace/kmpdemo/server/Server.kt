@@ -5,6 +5,8 @@ import io.ktor.server.application.Application
 import io.ktor.server.application.call
 import io.ktor.server.application.install
 import io.ktor.server.engine.embeddedServer
+import io.ktor.server.http.content.CompressedFileType
+import io.ktor.server.http.content.staticResources
 import io.ktor.server.netty.Netty
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.server.response.respond
@@ -26,6 +28,9 @@ private fun Application.module() {
     routing {
         get("/") {
             call.respond(CheesesData.cheeses)
+        }
+        staticResources("/static", "/static") {
+            preCompressed(CompressedFileType.GZIP)
         }
     }
 }

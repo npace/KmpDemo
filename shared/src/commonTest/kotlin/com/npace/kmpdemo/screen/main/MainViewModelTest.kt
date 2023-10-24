@@ -53,14 +53,14 @@ class MainViewModelTest {
     @Test
     fun `loads items from API and maps them to UI state`() = testState {
         api.response = listOf(
-            CheeseResponse("foo", "/foo-url"),
-            CheeseResponse("bar", null),
+            CheeseResponse("foo", "/foo-url", "foo is cheese"),
+            CheeseResponse("bar", null, "bar is also cheese"),
         )
         val expectedState = MainUIState(
             false,
             listOf(
-                CheeseViewState("foo", "${platform.localServerHost}/foo-url"),
-                CheeseViewState("bar", null),
+                CheeseViewState("foo", "${platform.localServerHost}/foo-url", "foo is cheese"),
+                CheeseViewState("bar", null, "bar is also cheese"),
             ),
         )
 

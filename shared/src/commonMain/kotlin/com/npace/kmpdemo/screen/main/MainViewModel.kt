@@ -44,6 +44,7 @@ class MainViewModel(
                         CheeseViewState(
                             response.name,
                             imageUrl(response.imagePath),
+                            response.description,
                         )
                     },
                 )

@@ -1,10 +1,12 @@
-package com.npace.kmpdemo
+package com.npace.kmpdemo.screen.main
 
 import app.cash.turbine.TurbineTestContext
 import app.cash.turbine.test
-import com.npace.kmpdemo.MainViewModel.MainUIState
+import com.npace.kmpdemo.CheeseViewState
+import com.npace.kmpdemo.screen.main.MainViewModel.MainUIState
 import com.npace.kmpdemo.api.CheeseResponse
 import com.npace.kmpdemo.apiclient.ApiClient
+import com.npace.kmpdemo.getPlatform
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -51,14 +53,14 @@ class MainViewModelTest {
     @Test
     fun `loads items from API and maps them to UI state`() = testState {
         api.response = listOf(
-            CheeseResponse("foo", "/foo-url"),
-            CheeseResponse("bar", null),
+            CheeseResponse("foo", "/foo-url", "foo is cheese"),
+            CheeseResponse("bar", null, "bar is also cheese"),
         )
         val expectedState = MainUIState(
             false,
             listOf(
-                CheeseViewState("foo", "${platform.localServerHost}/foo-url"),
-                CheeseViewState("bar", null),
+                CheeseViewState("foo", "${platform.localServerHost}/foo-url", "foo is cheese"),
+                CheeseViewState("bar", null, "bar is also cheese"),
             ),
         )
 

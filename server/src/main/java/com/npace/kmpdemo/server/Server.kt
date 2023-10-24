@@ -30,7 +30,7 @@ private fun Application.module() {
     routing {
         get("/") {
             call.respond(CheesesData.cheeses.map {
-                CheeseResponse(it, imagePath(it))
+                CheeseResponse(it.name, imagePath(it.name), it.description)
             })
         }
         staticResources("/static", "/static") {

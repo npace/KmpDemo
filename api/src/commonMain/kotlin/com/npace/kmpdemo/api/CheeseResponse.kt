@@ -6,4 +6,5 @@ import kotlinx.serialization.Serializable
 data class CheeseResponse(
     val name: String,
     val imagePath: String?,
+    val description: String,
 )

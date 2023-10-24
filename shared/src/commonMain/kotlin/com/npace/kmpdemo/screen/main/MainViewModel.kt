@@ -1,10 +1,12 @@
-package com.npace.kmpdemo
+package com.npace.kmpdemo.screen.main
 
+import cafe.adriel.voyager.core.model.ScreenModel
+import cafe.adriel.voyager.core.model.screenModelScope
+import com.npace.kmpdemo.CheeseViewState
+import com.npace.kmpdemo.Platform
 import com.npace.kmpdemo.apiclient.ApiClient
 import com.npace.kmpdemo.apiclient.KtorApiClient
-import com.rickclephas.kmm.viewmodel.KMMViewModel
-import com.rickclephas.kmm.viewmodel.MutableStateFlow
-import com.rickclephas.kmm.viewmodel.coroutineScope
+import com.npace.kmpdemo.getPlatform
 import com.rickclephas.kmp.nativecoroutines.NativeCoroutinesState
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -13,7 +15,7 @@ import kotlinx.coroutines.launch
 class MainViewModel(
     private val apiClient: ApiClient,
     private val platform: Platform,
-) : KMMViewModel() {
+) : ScreenModel {
 
     constructor() : this(KtorApiClient(), getPlatform())
 
@@ -22,8 +24,8 @@ class MainViewModel(
         val items: List<CheeseViewState>,
     )
 
-    private val _state = MutableStateFlow(
-        viewModelScope, MainUIState(
+    private val _state = kotlinx.coroutines.flow.MutableStateFlow(
+        MainUIState(
             loading = true,
             items = emptyList(),
         )
@@ -33,7 +35,7 @@ class MainViewModel(
     val state = _state.asStateFlow()
 
     init {
-        viewModelScope.coroutineScope.launch {
+        screenModelScope.launch {
             val response = apiClient.loadItems()
             _state.update {
                 it.copy(
@@ -42,6 +44,7 @@ class MainViewModel(
                         CheeseViewState(
                             response.name,
                             imageUrl(response.imagePath),
+                            response.description,
                         )
                     },
                 )

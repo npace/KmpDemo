@@ -1,7 +1,7 @@
 package com.npace.kmpdemo.screen.main
 
 import cafe.adriel.voyager.core.model.ScreenModel
-import cafe.adriel.voyager.core.model.coroutineScope
+import cafe.adriel.voyager.core.model.screenModelScope
 import com.npace.kmpdemo.CheeseViewState
 import com.npace.kmpdemo.Platform
 import com.npace.kmpdemo.apiclient.ApiClient
@@ -35,7 +35,7 @@ class MainViewModel(
     val state = _state.asStateFlow()
 
     init {
-        coroutineScope.launch {
+        screenModelScope.launch {
             val response = apiClient.loadItems()
             _state.update {
                 it.copy(

@@ -40,6 +40,7 @@ kotlin {
                 implementation(compose.material3)
                 implementation(libs.kamel)
                 implementation(libs.voyager)
+                implementation(libs.voyager.transitions)
 
                 implementation(projects.api)
             }

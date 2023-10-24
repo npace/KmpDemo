@@ -1,5 +1,6 @@
 package com.npace.kmpdemo.screen.main
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -27,8 +28,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
 import com.npace.kmpdemo.CheeseViewState
 import com.npace.kmpdemo.MyApplicationTheme
+import com.npace.kmpdemo.screen.detail.DetailScreen
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
 
@@ -42,7 +46,10 @@ class MainScreen : Screen {
             ) {
                 val viewModel = rememberScreenModel { MainViewModel() }
                 val state by viewModel.state.collectAsState()
-                CheeseList(state.items)
+                val navigator = LocalNavigator.currentOrThrow
+                CheeseList(state.items, onItemClicked = {
+                    navigator.push(DetailScreen(it))
+                })
                 if (state.loading) {
                     Box(
                         modifier = Modifier.fillMaxSize(),
@@ -57,7 +64,10 @@ class MainScreen : Screen {
 }
 
 @Composable
-private fun CheeseList(items: List<CheeseViewState>) {
+private fun CheeseList(
+    items: List<CheeseViewState>,
+    onItemClicked: (CheeseViewState) -> Unit,
+) {
     LazyColumn(
         modifier = Modifier.padding(8.dp),
         content = {
@@ -65,7 +75,7 @@ private fun CheeseList(items: List<CheeseViewState>) {
                 items = items,
                 key = { it.cheeseName },
                 itemContent = {
-                    CheeseListItem(it)
+                    CheeseListItem(it, onItemClicked)
                 }
             )
         }
@@ -73,14 +83,18 @@ private fun CheeseList(items: List<CheeseViewState>) {
 }
 
 @Composable
-private fun CheeseListItem(state: CheeseViewState) {
+private fun CheeseListItem(
+    state: CheeseViewState,
+    onItemClicked: (CheeseViewState) -> Unit,
+) {
     Card(
         elevation = CardDefaults.cardElevation(
             defaultElevation = 8.dp,
         ),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp),
+            .padding(8.dp)
+            .clickable { onItemClicked(state) },
     ) {
         Row(
             modifier = Modifier
